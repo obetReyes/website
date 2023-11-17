@@ -1,26 +1,26 @@
 import { FormDataI } from '@/interfaces/Form';
 import Image from 'next/image';
-import React from 'react'
-import { UseFormRegister } from 'react-hook-form';
-
+import { useEffect, useState } from 'react';
+import { Control, useWatch,} from 'react-hook-form';
 
   const fileInputClassname = 
   "hidden";
   const  labelClassName = 
   " p-4 bg-gray-900 text-white rounded shadow-lg cursor-pointer hover:bg-gray-800"
-  const image =
-  "w-[50%] rounded shadow-lg"
+  const imageClassName =
+  "rounded shadow-lg w-[50%] h-[40vh]"
 
 interface Props{
     label:string
     register:any
-    image:string
+    img:string
 
 }
-const ImageInput = ({label, register, image}:Props) => {
+const ImageInput = ({img,label, register}:Props) => {
+
   return (
-    <div className="py-4 flex flex-col md:flex-row items-center justify-evenly">
-  <label className={labelClassName}>
+    <div  className="py-4 flex flex-col md:flex-row items-center justify-evenly">
+  <label  className={labelClassName}>
     {label}
     <input
       type="file"
@@ -28,7 +28,7 @@ const ImageInput = ({label, register, image}:Props) => {
       {...register}
     />
 </label>
-<Image className={image}  src={image} width={400} height={400} alt='image'  />
+<Image className={imageClassName}  src={img} width={400} height={400} alt='image'  />
 </div>
   )
 }

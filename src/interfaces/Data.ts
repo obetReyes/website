@@ -14,6 +14,22 @@ export interface DataI {
 
 }
 
+
+export interface AdminI {
+  
+    id: number
+    description: string
+    hero_title: string
+    services_title: string
+    services_description: string
+    gallery_title: string
+    contact_title: string
+    contact_subtitle: string
+    services: ServiceI[]
+    images: ImageI[]
+  
+
+}
 export interface ServiceI {
   id: number
   name: string

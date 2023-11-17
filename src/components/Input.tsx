@@ -4,7 +4,11 @@ import { UseFormRegister } from 'react-hook-form'
 
 
 const inputClassName =
-  "w-full rounded border border-gray-500 px-2 py-1 text-lg";
+  "w-full rounded border border-gray-500 px-2 py-1 text-lg min-h-[20vh]";
+
+const labelClassName = 
+    "text-xl font-semibold uppercase"
+
 
 interface Props{
     value:string
@@ -14,11 +18,12 @@ interface Props{
 
 const Input = ({register, label, value}:Props) => {
   return (
-    <div>
-    <label>
+    <div >
+    <label className={labelClassName}>
             {label}
       </label>
       <textarea
+    
         defaultValue={value}
         {...register}
         className={inputClassName}

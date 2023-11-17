@@ -1,37 +1,38 @@
 export interface FormDataI{
    description:string
    hero_title:string  
-   hero_image:string
-   hero_logo:string
-   service_title:string
-   service_description:string
-   service_image:string
+   services_title:string
+   services_description:string
    service_one_title:string
    service_one_description:string
-   service_one_image:string
    service_two_title:string
    service_two_description:string
-   service_two_image:string
    service_three_title:string
    service_three_description:string
-   service_three_image:string
    service_four_title:string
    service_four_description:string
-   service_four_image:string
    service_five_title:string
    service_five_description:string
-   service_five_image:string
    service_six_title:string
    service_six_description:string
-   service_six_image:string
    gallery_title:string
-   gallery_file_one:string
-   gallery_file_two:string
-   gallery_file_three:string
-   gallery_file_four:string
-   gallery_file_five:string
-   gallery_file_six:string
    contact_title:string
    contact_description:string
+   images:{
+      hero_image:FileList
+      service_image:FileList
+      service_one_image:FileList
+      service_two_image:FileList
+      service_three_image:FileList
+      service_four_image:FileList
+      service_five_image:FileList
+      service_six_image:FileList
+      gallery_image_one:FileList
+      gallery_image_two:FileList
+      gallery_image_three:FileList
+      gallery_image_four:FileList
+      gallery_image_five:FileList
+      gallery_image_six:FileList
+   }
   }
   

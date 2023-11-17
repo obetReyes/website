@@ -1,6 +1,7 @@
 
 import Image from 'next/image'
 import agrojardinesLogo from "../../public/agrojardinesLogo.jpg"
+import Link from 'next/link'
 interface Props{
     title:string
     image:string
@@ -13,18 +14,18 @@ const Hero = ({title, image}:Props) => {
         <div className="p-10 text-center">
           <section>
             <h1 className="mt-32 text-2xl md:text-7xl tracking-tighter capitalize text-white font-semibold">
-              <span className='text-orange-500'>{title.substring(0, 4)}</span>
-              {title.substring(4)}
+              <span className='text-orange-500'>{title?.substring(0, 4)}</span>
+              {title?.substring(4)}
             </h1>
             <Image className='heroIcon rounded-full' width={128} height={128} src={agrojardinesLogo.src} alt='agrojardines logo' />
           </section>
           <section className="flex flex-col items-center justify-center gap-3 mt-10 md:flex-row">
-            <a href="/#contacto" className="px-6 py-2.5 md:px-8 md:py-3 text-center bg-orange-600 text-white shadow-md rounded-full">
+            <Link href="/#contacto" className="px-6 py-2.5 md:px-8 md:py-3 text-center bg-orange-600 text-white shadow-md rounded-full">
               Contacto
-            </a>
-            <a href="/#trabajo" className="inline-flex items-center justify-center text-lg underline font-semibold text-white duration-200">
+            </Link>
+            <Link href="/#trabajo" className="inline-flex items-center justify-center text-lg underline font-semibold text-white duration-200">
               Nuestro Trabajo
-            </a>
+            </Link>
           </section>
         </div>
       </article>
