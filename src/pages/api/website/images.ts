@@ -6,6 +6,9 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../../prisma/db';
 import { Upload } from '@aws-sdk/lib-storage';
 import stream from "stream"
+import { getServerSession } from 'next-auth';
+import  nextAuth  from "../auth/[...nextauth]"
+
 
 export const config = {
     api: {
@@ -21,6 +24,10 @@ export const config = {
 export default async function handler(req:CustomNextApiRequest, res:NextApiResponse) {
   switch (req.method) {
     case 'PUT':
+      const session = await getServerSession(req, res, nextAuth)
+
+      if(session){
+
       try {
         uploadMiddleware(req as any, res as any, async (err: any) => {
               if (err) {
@@ -143,6 +150,9 @@ export default async function handler(req:CustomNextApiRequest, res:NextApiRespo
         console.error('Error processing request:', error);
         return res.status(500).send(error)
       }
+    }else{
+      return res.status(401).json({message:"you are not allowed to perform  this action"})
+    }
       break;
     default:
       res.status(405).end(); // Method Not Allowed

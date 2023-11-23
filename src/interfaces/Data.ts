@@ -33,6 +33,7 @@ export interface AdminI {
 export interface ServiceI {
   id: number
   name: string
+  description:string
   images: ServiceImageI[]
 }
 
@@ -44,4 +45,14 @@ export interface ServiceImageI {
 export interface ImageI {
   id: number
   url: string
+}
+
+
+export interface ServiceDataI{
+  data:{
+    id: number
+    name: string
+    description:string
+    images: ServiceImageI[]
+  }
 }

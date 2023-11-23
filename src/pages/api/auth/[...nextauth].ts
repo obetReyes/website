@@ -13,6 +13,11 @@ export default nextAuth({
         })
       ],
     
+      pages: {
+        error: '/', // Error code passed in query string as ?error=
+        verifyRequest: undefined, // (used for check email message)
+        newUser: undefined // New users will be directed here on first sign in (leave the property out if not of interest)
+      },
       callbacks:{
         async signIn({ account, profile }:any) {
           if (account.provider === "google") {

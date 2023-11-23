@@ -1,5 +1,8 @@
 import React from 'react'
 
+import {useSession} from "next-auth/react"
+import { signOut } from 'next-auth/react'
+
 
 const header = 
 "w-full bg-gray-100"
@@ -12,7 +15,9 @@ const Appbar = () => {
   return (
     <header className={header}>
         <nav className={nav}>
-            <button className={button}>cerrar sesion</button>
+            <button className={button} onClick={() => signOut({
+                callbackUrl:"/"
+            })} >cerrar sesion</button>
         </nav>
     </header>
   )

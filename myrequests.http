@@ -1,8 +1,4 @@
 
-PUT http://localhost:3000/api/website 
-Content-Type: application/json
+PUT http://localhost:3000/api/website
 
-{
-   "hero_img":"https://bsfreekib.nyc3.cdn.digitaloceanspaces.com/agrojardines/jardin_agrojardines_portada.jpg",
-    "service_img":
-}
+Content-Type: application/json

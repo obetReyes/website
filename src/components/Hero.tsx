@@ -20,7 +20,7 @@ const Hero = ({title, image}:Props) => {
             <Image className='heroIcon rounded-full' width={128} height={128} src={agrojardinesLogo.src} alt='agrojardines logo' />
           </section>
           <section className="flex flex-col items-center justify-center gap-3 mt-10 md:flex-row">
-            <Link href="/#contacto" className="px-6 py-2.5 md:px-8 md:py-3 text-center bg-orange-600 text-white shadow-md rounded-full">
+            <Link href="/#contacto" className="px-6 py-2.5 md:px-8 md:py-3 text-center bg-[#2971D9] text-white shadow-md rounded-full">
               Contacto
             </Link>
             <Link href="/#trabajo" className="inline-flex items-center justify-center text-lg underline font-semibold text-white duration-200">

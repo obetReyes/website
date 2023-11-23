@@ -32,7 +32,7 @@ const Administracion = () => {
 
     fetchData().catch((e) => {
       // handle the error as needed
-      console.error("An error occurred while fetching the data: ", e);
+     alert(`ocurrio un error: ${e} intentalo mas tarde o contacta al creador`);
     });
   }, []);
 
@@ -63,7 +63,7 @@ const Administracion = () => {
       }
     });
 
-    console.log("ids", ids)
+  
     formData.append(
       "ids",
       ids
@@ -72,7 +72,7 @@ const Administracion = () => {
       method: "PUT",
       body: formData,
     }).then((res) => res.json());
-    console.log(setImages);
+    
 
   const { images, ...restOfData } = data;
 const webContent = { ...restOfData };
@@ -83,7 +83,8 @@ const webContent = { ...restOfData };
         "Content-Type": "application/json",
       },
     }).then((res) => res.json())
-    console.log(setData)
+
+    alert("se ha modificado el sitio")
   });
 
   if (data)
@@ -143,28 +144,191 @@ const webContent = { ...restOfData };
               />
             </div>
           </fieldset>
-          <fieldset>
-          <Input
-              label="titulo seccion servicios"
-              value={data?.services_title || ""}
-              register={register("services_title")}
-            />
-            <Input
-              label="descripcion seccion servicios"
-              value={data?.services_description || ""}
-              register={register("services_description")}
-            />
-              <ImageInput
-                label="cambiar imagen seccion servicios"
-                register={register("images.service_image")}
-                img={
-                  watchFields.images?.service_image &&
-                  watchFields.images?.service_image[0] instanceof File
-                    ? URL.createObjectURL(watchFields.images?.service_image[0])
-                    : data?.images[1].url
-                }
+          <fieldset className="flex  my-24 flex-wrap ">
+                <legend className="text-center text-4xl uppercase font-bold">servicios</legend>
+              {/* service 1 */}
+              <div className="flex flex-col w-full md:w-1/2 md:p-8">
+              <Input
+                label="servicio "
+                value={data.services[0].name || ""}
+                register={register("service_one_title")}
               />
+              <Input
+                label="descripcion "
+                value={data.services[0].description || ""}
+                register={register("service_one_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[0].name} `}
+                  register={register("images.service_one_image")}
+                  img={data.services[0].images[0].url}
+                />
+              </div>
+            
+                  {/* service 2 */}
+              <div className="flex flex-col w-full md:w-1/2 md:p-8">
+              <Input
+                label="servicio "
+                value={data.services[1].name || ""}
+                register={register("service_two_title")}
+              />
+              <Input
+                label="descripcion "
+                value={data.services[1].description || ""}
+                register={register("service_two_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[1].name} `}
+                  register={register("images.service_two_image")}
+                  img={data.services[1].images[0].url}
+                />
+              </div>
+
+              {/* service 3 */}
+              <div className="flex flex-col w-full md:w-1/2 md:p-8">
+              <Input
+                label="servicio "
+                value={data.services[2].name || ""}
+                register={register("service_three_title")}
+              />
+              <Input
+                label="descripcion "
+                value={data.services[2].description || ""}
+                register={register("service_three_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[2].name} `}
+                  register={register("images.service_three_image")}
+                  img={data.services[2].images[0].url}
+                />
+              </div>
+
+  {/* service 4 */}
+  <div className="flex flex-col w-full md:w-1/2 md:md:p-8">
+              <Input
+                label="servicio "
+                value={data.services[3].name || ""}
+                register={register("service_four_title")}
+              />
+              <Input
+                label="descripcion "
+                value={data.services[3].description || ""}
+                register={register("service_four_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[3].name} `}
+                  register={register("images.service_four_image")}
+                  img={data.services[3].images[0].url}
+                />
+              </div>
+
+                {/* service 5 */}
+  <div className="flex flex-col w-full md:w-1/2 md:p-8">
+              <Input
+                label="servicio "
+                value={data.services[4].name || ""}
+                register={register("service_five_title")}
+              />
+              <Input
+                label="descripcion "
+                value={data.services[4].description || ""}
+                register={register("service_five_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[4].name} `}
+                  register={register("images.service_five_image")}
+                  img={data.services[4].images[0].url}
+                />
+              </div>
+   {/* service 6 */}
+   <div className="flex flex-col w-full md:w-1/2 md:p-8">
+              <Input
+                label="servicio"
+                value={data.services[5].name || ""}
+                register={register("service_six_title")}
+              />
+              <Input
+                label="descripcion "
+                value={data.services[5].description || ""}
+                register={register("service_six_description")}
+              />
+                <ImageInput
+                  label={`cambiar imagen ${data.services[5].name} `}
+                  register={register("images.service_six_image")}
+                  img={data.services[5].images[0].url}
+                />
+              </div>
           </fieldset>
+
+          <fieldset className="my-24">
+          <legend className="text-center text-4xl uppercase font-bold">galeria</legend>
+              
+          <Input
+                label="cambiar titulo galeria"
+                value={data.gallery_title || ""}
+                register={register("gallery_title")}
+              />
+
+              <div className="flex flex-wrap">
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[2].url}
+                />
+                </div>
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[3].url}
+                />
+                </div>
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[4].url}
+                />
+                </div>
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[5].url}
+                />
+                </div>
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[6].url}
+                />
+                </div>
+                <div className="w-full md:w-1/2 md:p-4">
+                <ImageInput
+                  label="cambiar imagen"
+                  register={register("images.service_six_image")}
+                  img={data.images[7].url}
+                />
+                </div>
+              </div>
+
+          </fieldset>
+
+         <fieldset className="my-24">
+         <legend className="text-center text-4xl uppercase font-bold">CONTACTO</legend>
+         <Input
+                label="cambiar titulo contacto"
+                value={data.contact_title || ""}
+                register={register("contact_title")}
+              />
+                   <Input
+                label="cambiar frase contacto"
+                value={data.contact_subtitle || ""}
+                register={register("contact_description")}
+              />
+          </fieldset> 
           <input type="submit" value="hacer cambios" className={submitInput} />
         </form>
       </Suspense>

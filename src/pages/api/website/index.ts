@@ -3,6 +3,9 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {z} from "zod"
 import prisma from '../../../../prisma/db';
 import { MulterFile } from '@/interfaces/Files';
+import { getServerSession } from 'next-auth';
+import  nextAuth  from "../auth/[...nextauth]"
+
 
 const schema = z.object({
   description:z.string().optional(),
@@ -53,6 +56,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse)  
               select:{
                 id:true,
                 name:true,
+                description:true,
                 images:{
                   select:{
                     id:true,
@@ -84,7 +88,15 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse)  
 
   
   case 'PUT':
+    const session = await getServerSession(req, res, nextAuth)
+
+    if(session){
   try {
+
+
+      if (session) {
+
+      }
     const body =  schema.parse(req.body)
 
       await prisma.content.update({
@@ -92,9 +104,31 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse)  
           id:1
         },
         data:{
-          ...body
+          hero_title:body.hero_title,
+          services_title:body.services_title,
+          services_description:body.services_description,
+          gallery_title:body.gallery_title,
+          contact_title:body.contact_title,
+            contact_subtitle:body.contact_description,
         }
       })
+      const servicesNames = [ body.service_one_title, body.service_two_title, body.service_three_title, body.service_four_title, body.service_five_title, body.service_six_title]
+      const servicesDescription =  [ body.service_one_description, body.service_two_description, body.service_three_description, body.service_four_description, body.service_five_description, body.service_six_description]
+
+      if(servicesNames.length > 1){
+        for(let i = 0; i < servicesNames.length; i++){
+          console.log("index",[i + 1], "name", servicesNames[i], "desc", servicesDescription[i])
+          await prisma.service.update({
+            where:{
+              id:Number(i + 1)
+            },
+            data:{
+              name:String(servicesNames[i]),
+              description:String(servicesDescription[i])
+            }
+           })
+        }
+    }
     return res.status(200).json({data:"se ha actualizado el sitio"})
   }
   catch (error) {
@@ -105,6 +139,9 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse)  
       return res.status(400).json(error)
     }
   }
+}else{
+  return res.status(401).json({message:"you are not allowed to perform  this action"})
+}
     
 
 
